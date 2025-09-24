@@ -1,38 +1,26 @@
-pipeline {
-    agent { label 'JDK_17' }
-    options { 
-        timeout(time: 15, unit: 'MINUTES') 
+pipeline{
+    agent any
+    options{
+        timeout(time: 10, unit: 'HOURS')
     }
-    triggers {
-        pollSCM('H */4 * * 1-5') 
-           
+    triggers{
+        pollSCM('* * * * *')
     }
-    tools {
-        jdk 'JDK_17'
-
+    tools{
+        jdk 'JDK_8'
     }
-     stages {
-         stage('GIT_cloning') {
-            steps { 
-            git url : 'https://github.com/muthyalasaikiran/spring-petclinic.git',
-                branch : 'main'
-     }
-         }
-
-        stage('build and package ') {
-            steps { 
-            sh script : 'mvn package'
-     }
+    stages{
+        stage ('git') {
+            steps{
+                git url: 'https://github.com/Naresh1770/spring-petclinic.git',
+                branch: 'main'
+            }
         }
+        stage ('MVN') {
+            steps{
+                sh script: 'mvn package'
+            }
 
-        stage('reportingg ') {
-            steps { 
-            archiveArtifacts artifacts : '**/target/spring-petclinic-*.jar'
-            junit testResults :  '**/target/surefire-reports/TEST-*.xml'
-     }
         }
-    
+    }
 }
-
-}
-
