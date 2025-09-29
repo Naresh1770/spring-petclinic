@@ -19,8 +19,9 @@ pipeline{
                 }
              }
              stage('downloading'){
-                steps{
-                    archiveArtifacts : '**/target/spring-petclinic-**.jar'    
+                steps{    
+                    archiveArtifacts artifacts: '**/target/spring-petclinic-*.jar'
+
                 }
              }
         }
