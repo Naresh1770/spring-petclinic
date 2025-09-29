@@ -27,19 +27,25 @@ pipeline{
         }
         post{
             success{
-                mail subject : 'your build was success',
+                mail( 
+                    subject : 'Build success',
                      body : 'your build was effective',
                      to : 'd.nareshyadav.1@gmail.com'
+                     )
             }
             failure{
-                mail subject : 'your build was failure',
-                     body : 'your build was deffective',
+                mail (
+                     subject : 'Build failure',
+                     body : 'please check jenkins logs',
                      to : 'd.nareshyadav.1@gmail.com'
+                )
             }
             aborted{
-                mail subject : 'your build was stoped',
-                     body : 'your build was aborted',
+                mail ( 
+                    subject : 'Build aborted',
+                     body : 'your build was stopped',
                      to : 'd.nareshyadav.1@gmail.com'
+                )
             }
         }
 }
