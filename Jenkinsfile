@@ -26,13 +26,19 @@ pipeline{
         }
         post{
             success{
-                echo 'your build was success'
+                mail subject : 'your build was success',
+                     body : 'your build was effective',
+                     to : 'd.nareshyadav.1@gmail.com'
             }
             failure{
-                echo 'your build was unsuccess'
+                mail subject : 'your build was failure',
+                     body : 'your build was deffective',
+                     to : 'd.nareshyadav.1@gmail.com'
             }
             aborted{
-                echo 'your build was stopped'
+                mail subject : 'your build was stoped',
+                     body : 'your build was aborted',
+                     to : 'd.nareshyadav.1@gmail.com'
             }
         }
     }
