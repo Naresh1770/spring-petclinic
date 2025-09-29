@@ -1,5 +1,5 @@
 pipeline{
-    agent any{
+    agent any
         options{
              timeout(time: 10 , unit:'MINUTES')
         }
@@ -41,5 +41,4 @@ pipeline{
                      to : 'd.nareshyadav.1@gmail.com'
             }
         }
-    }
 }
