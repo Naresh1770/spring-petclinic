@@ -24,6 +24,7 @@ pipeline{
 
                 }
              }
+        }
              post{
                 success{
                     Mail(
@@ -49,5 +50,5 @@ pipeline{
 
                 
              }
-        }
+        
 }
