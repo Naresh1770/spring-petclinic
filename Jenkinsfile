@@ -1,11 +1,5 @@
 pipeline{
-    agent any
-        options{
-             timeout(time: 10 , unit:'MINUTES')
-        }
-        triggers{
-            pollSCM('* * * * *' )
-        }
+    agent { label 'node_1'}
         stages{
             stage('git'){
                 steps{
@@ -18,37 +12,11 @@ pipeline{
                     sh script: 'mvn package'      
                 }
              }
-             stage('downloading'){
+             stage('docker build'){
                 steps{    
-                    archiveArtifacts artifacts: '**/target/spring-petclinic-*.jar'
+                   sh 'docker build -t springpet-clinic:v1 .'
 
                 }
              }
         }
-             post{
-                success{
-                    Mail(
-                        subject : "APPLICATION SUCCESS",
-                        body :"Your application is running Success",
-                        to :"d.nareshyadav.1@gmail.com"
-                    )
-                }
-                failure{
-                    Mail(
-                        subject : "APPLICATION FAILE",
-                        body :"Your application was Failed",
-                        to :"d.nareshyadav.1@gmail.com"
-                    )
-                }
-                aborted{
-                  Mail(
-                        subject : "APPLICATION ABORTED",
-                        body :"Your application was Stopped",
-                        to :"d.nareshyadav.1@gmail.com"
-                    )  
-                }
-
-                
-             }
-        
-}
+     }
