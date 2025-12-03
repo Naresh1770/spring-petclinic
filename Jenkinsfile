@@ -1,6 +1,6 @@
 pipeline{
     agent { label 'node_1'}
-          environmet{
+          environment{
                DOCKER_USER = credentials('dockerhub-cred')   
                }
         stages{
