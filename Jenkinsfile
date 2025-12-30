@@ -21,20 +21,4 @@ pipeline{
          }
       }
     }
-     post { 
-        success { 
-            mail(
-                subject: 'build success'
-                body: 'Your build was success'
-                to: 'nareshyadav1770@gmail.com'
-             )
-        }
-        failure { 
-            mail(
-                subject: 'build fail'
-                body: 'Your build was fail'
-                to: 'nareshyadav1770@gmail.com'
-             )
-        }
-    }
 }
