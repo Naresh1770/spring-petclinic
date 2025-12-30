@@ -1,12 +1,13 @@
 pipeline{
     agent any
+    triggers { pollSCM('* * * * *') }
     options {
       timeout(time: 1, unit: 'HOURS')
     }
     stages{
       stage(git){
          steps{
-            git url: 'github.com/Naresh1770/spring-petclinic.git'
+            git url: 'github.com/Naresh1770/spring-petclinic.git',
                 branch: 'main'
          }
       }
